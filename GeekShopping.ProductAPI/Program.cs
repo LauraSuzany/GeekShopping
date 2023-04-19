@@ -12,13 +12,11 @@ var builder = WebApplication.CreateBuilder(args);
 var mySqlConnection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContextPool<MySqlContext>(options => options.UseMySql(mySqlConnection, ServerVersion.AutoDetect(mySqlConnection)));
 
-// Add services to the container.
+
 builder.Services.AddControllers();
-builder.Services.AddDbContext<MySqlContext>
-    (opt =>
-builder.Services.AddScoped<IProductRepository, ProductRepository>());
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
-
+builder.Services.AddAutoMapper(typeof(MappingConfig));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c => 
@@ -27,14 +25,6 @@ builder.Services.AddSwaggerGen(c =>
 });
 var app = builder.Build();
 
-builder.Services.AddAutoMapper(typeof(MappingConfig));//se der erro é aqui
-
-//builder.Services.AddSingleton<IMapper>(new Mapper(new MapperConfiguration(cfg =>
-//{
-//    cfg.AddProfile<MappingConfig>();
-//})));
-
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

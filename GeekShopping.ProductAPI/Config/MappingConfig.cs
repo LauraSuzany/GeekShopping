@@ -4,15 +4,16 @@ using GeekShopping.ProductAPI.Model;
 
 namespace GeekShopping.ProductAPI.Config
 {
-    public class MappingConfig
+    public class MappingConfig : Profile
     {
-        public static MapperConfiguration RegiterMaps()
+        public MappingConfig()
         {
-            var mappingConfig = new MapperConfiguration(config => {
-                config.CreateMap<ProductVO, Product>();
-                config.CreateMap<Product, ProductVO>();
-            });
-            return mappingConfig;
+            #region ModelToDomain
+            CreateMap<ProductVO, Product>();
+            #endregion
+            #region DomainToModel
+            CreateMap<Product, ProductVO>();
+            #endregion
         }
     }
 }
