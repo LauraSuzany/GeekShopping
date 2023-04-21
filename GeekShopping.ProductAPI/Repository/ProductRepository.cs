@@ -30,6 +30,16 @@ namespace GeekShopping.ProductAPI.Repository
             return _mapper.Map<ProductVO>(product);
         }
 
+        public async Task<bool> ProductExists(long id)
+        {
+            Product? product = await _context.Products.Where(x => x.Id == id).AsNoTracking().FirstOrDefaultAsync();
+            if (product == null)
+            {
+               return false;
+            }
+            return true;
+        }
+
         public async Task<ProductVO> Create(ProductVO product)
         {
             Product productEntity = _mapper.Map<Product>(product);
