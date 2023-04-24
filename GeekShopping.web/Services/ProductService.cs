@@ -34,9 +34,9 @@ namespace GeekShopping.web.Services
 
         public async Task<ProductModel> Create(ProductModel productModel)
         {
-            HttpResponseMessage httpResponseMessage = await _client.PostAsJson(BasePath, productModel);
-            if(httpResponseMessage.IsSuccessStatusCode) return await httpResponseMessage.ReadContentAs<ProductModel>();
-            else throw new Exception("Something went wrong when calling API");
+                HttpResponseMessage httpResponseMessage = await _client.PostAsJson(BasePath, productModel);
+                if (httpResponseMessage.IsSuccessStatusCode)  return await httpResponseMessage.ReadContentAs<ProductModel>();
+                else throw new Exception("Something went wrong when calling API");
         }
 
         public async Task<ProductModel> Update(ProductModel productModel)

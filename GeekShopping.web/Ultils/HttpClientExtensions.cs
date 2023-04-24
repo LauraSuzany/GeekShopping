@@ -22,19 +22,21 @@ namespace GeekShopping.web.Ultils
             T? t = JsonSerializer.Deserialize<T>(dataAsString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
             return t;
         }
-        public static Task<HttpResponseMessage> PostAsJson<T>(this  HttpClient httpClient, string url, T data)
+
+        public static Task<HttpResponseMessage> PostAsJson<T>(this HttpClient httpClient, string url, T data)
         {
             var dataAsString = JsonSerializer.Serialize(data);
             var content = new StringContent(dataAsString);
             content.Headers.ContentType = contentType;
-            return httpClient.PostAsJson(url, data);
+            return httpClient.PostAsync(url, content);
         }
+
         public static Task<HttpResponseMessage> PutAsJson<T>(this  HttpClient httpClient, string url, T data)
         {
             var dataAsString = JsonSerializer.Serialize(data);
             var content = new StringContent(dataAsString);
             content.Headers.ContentType = contentType;
-            return httpClient.PutAsJson(url, data);
+            return httpClient.PutAsync(url, content);
         }
     }
 }

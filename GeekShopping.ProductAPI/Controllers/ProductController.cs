@@ -44,7 +44,7 @@ namespace GeekShopping.ProductAPI.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult<IEnumerable<ProductVO>>> Update([FromBody] ProductVO productVO)
+        public async Task<ActionResult<ProductVO>> Update([FromBody] ProductVO productVO)
         {
             bool productExist = await _repository.ProductExists(productVO.Id);
             if (!productExist)

@@ -8,7 +8,7 @@
             <h1 class="text-primary">Product List</h1>
         </div>
         <div class="col text-end pt-1">
-            <a asp-action="ProducCreate" class="bnt btn-outline-primary">
+            <a asp-action="ProductCreate" class="bnt btn-outline-primary">
                 <i class="fas fa-plus"></i>Create a new Produc
             </a>
         </div>
@@ -31,15 +31,23 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <th>
+                    <td>
                         @item.Name
-                    </th>
-                    <th>
+                    </td>
+                    <td>
                         @item.CategoryName
-                    </th>
-                    <th>
-                        @item.Price
-                    </th>
+                    </td>
+                    <td>
+                        @((item.Price).ToString("c"))
+                    </td>
+                    <td>
+                        <a asp-action="ProductUpdate" class="btn btn-success" asp-route-id="@item.Id">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a asp-action="ProductDelete" class="btn btn-danger" asp-route-id="@item.Id">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </td>
                 </tr>
             }
         </tbody>
