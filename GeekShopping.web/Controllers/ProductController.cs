@@ -1,5 +1,7 @@
 ﻿using GeekShopping.web.Models;
 using GeekShopping.web.Services.IServices;
+using GeekShopping.web.Ultils;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GeekShopping.web.Controllers
@@ -13,6 +15,7 @@ namespace GeekShopping.web.Controllers
             _productService = productService ?? throw new ArgumentNullException(nameof(productService));
         }
 
+        [Authorize]
         public async Task<IActionResult> ProductIndex()
         {
             var products = await _productService.GetAllProdut();
@@ -29,6 +32,7 @@ namespace GeekShopping.web.Controllers
         /// Persistir de fatos os produtos no banco
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> ProductCreate(ProductModel productModel)
         {
@@ -60,6 +64,7 @@ namespace GeekShopping.web.Controllers
         /// </summary>
         /// <returns>Tela com todos os Produtos com produto que foi atualizado</returns>
         ///Observação para comunicação entre serviços usa-se post e get verbos como httpPut etc... não funcionam
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> ProductUpdate(ProductModel productModel)
         {
@@ -75,6 +80,7 @@ namespace GeekShopping.web.Controllers
             return View(productModel);
         }
 
+        [Authorize]
         public async Task<IActionResult> ProductDelete(int id)
         {
             var product = await _productService.FindProductById(id);
@@ -85,6 +91,7 @@ namespace GeekShopping.web.Controllers
         /// <summary>
         /// Deletar produto selecionado
         /// </summary>
+        [Authorize (Roles = Role.Admin)]
         [HttpPost]
         public async Task<IActionResult> ProductDelete(ProductModel productModel)
         {

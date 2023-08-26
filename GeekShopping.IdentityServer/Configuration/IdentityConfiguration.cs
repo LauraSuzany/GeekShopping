@@ -6,7 +6,7 @@ namespace GeekShopping.IdentityServer.Configuration
     public static class IdentityConfiguration
     {
         public const string Admin = "admin";
-        public const string Customer = "customer";
+        public const string Client = "Client";
 
         public static IEnumerable<IdentityResource> IdentityResource => 
             new List<IdentityResource> 
@@ -24,7 +24,7 @@ namespace GeekShopping.IdentityServer.Configuration
                 new ApiScope(name: "write", "Write Data."),
                 new ApiScope(name: "delete", "delete Data."),
             };
-        public static IEnumerable<Client> apiScopes =>
+        public static IEnumerable<Client> Clients =>
             new List<Client>
             {
                 new Client
@@ -39,8 +39,8 @@ namespace GeekShopping.IdentityServer.Configuration
                     ClientId = "geek_shopping",
                     ClientSecrets = { new Secret("my_super_secret".Sha256())},
                     AllowedGrantTypes = GrantTypes.Code, 
-                    RedirectUris = {"http://localhost:1386/signin-oidc" },
-                    PostLogoutRedirectUris = {"http://localhost:1386/signout-callback-oidc" }, 
+                    RedirectUris = {"https://localhost:4430/signin-oidc" },
+                    PostLogoutRedirectUris = {"https://localhost:4430/signout-callback-oidc" }, 
                     AllowedScopes = new List<string> 
                     {
                         IdentityServerConstants.StandardScopes.OpenId, 
