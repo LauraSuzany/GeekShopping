@@ -17,7 +17,6 @@
                     <div class="card-header">
                         <h2>Local Account</h2>
                     </div>
-
                     <div class="card-body">
                         <form asp-route="Login">
                             <input type="hidden" asp-for="ReturnUrl" />
@@ -45,7 +44,12 @@
                             <button class="btn btn-secondary" name="button" value="cancel">Cancel</button>
                         </form>
                     </div>
+                    <div/>
                 </div>
+            </div>
+
+            <div class="card-footer">
+                <a href="@Url.Action("Register",new {Model.ReturnUrl })">New User? Create account</a>
             </div>
         }
 
