@@ -33,20 +33,20 @@ namespace GeekShopping.IdentityServer.Models.Initializer
 
             ApplicationUser client = new ApplicationUser()
             {
-                UserName = "laura-client",
-                Email = "laura-client@erudio.com.br",
+                UserName = "client-laura",
+                Email = "laura-client@Laura-lm.com.br",
                 EmailConfirmed = true,
                 PhoneNumber = "+55 (91)91980170827",
-                FristName = "Laura",
-                LastName = "Suzany"
+                FirstName = "Laura-lm",
+                LastName = "Laura-lm"
             };
 
-            _userManager.CreateAsync(client, "password").GetAwaiter().GetResult();
+            _userManager.CreateAsync(client, "P@ssw0rd").GetAwaiter().GetResult();
             _userManager.AddToRoleAsync(client, IdentityConfiguration.Client).GetAwaiter().GetResult();
             var clientClaims = _userManager.AddClaimsAsync(client, new Claim[]
             {
-                new Claim(JwtClaimTypes.Name, $"{client.FristName} {client.LastName}"),
-                new Claim(JwtClaimTypes.GivenName, client.FristName),
+                new Claim(JwtClaimTypes.Name, $"{client.FirstName} {client.LastName}"),
+                new Claim(JwtClaimTypes.GivenName, client.FirstName),
                 new Claim(JwtClaimTypes.FamilyName, client.LastName),
                 new Claim(JwtClaimTypes.Role, IdentityConfiguration.Client)
             });
@@ -54,20 +54,20 @@ namespace GeekShopping.IdentityServer.Models.Initializer
 
             ApplicationUser admin = new ApplicationUser()
             {
-                UserName = "laura-admin",
-                Email = "laura-admin@erudio.com.br",
+                UserName = "adminLM",
+                Email = "laura-admin@adminLM.com.br",
                 EmailConfirmed = true,
                 PhoneNumber = "+55 (91)91980170827",
-                FristName = "Laura",
-                LastName = "Suzany"
+                FirstName = "LauraLM",
+                LastName = "SuzanyLM"
             };
 
-            _userManager.CreateAsync(admin, "password").GetAwaiter().GetResult();
+            _userManager.CreateAsync(admin, "P@ssw0rd").GetAwaiter().GetResult();
             _userManager.AddToRoleAsync(admin, IdentityConfiguration.Admin).GetAwaiter().GetResult();
             var adminClaims = _userManager.AddClaimsAsync(admin, new Claim[]
             {
-                new Claim(JwtClaimTypes.Name, $"{admin.FristName} {admin.LastName}"),
-                new Claim(JwtClaimTypes.GivenName, admin.FristName),
+                new Claim(JwtClaimTypes.Name, $"{admin.FirstName} {admin.LastName}"),
+                new Claim(JwtClaimTypes.GivenName, admin.FirstName),
                 new Claim(JwtClaimTypes.FamilyName, admin.LastName),
                 new Claim(JwtClaimTypes.Role, IdentityConfiguration.Admin)
             });
